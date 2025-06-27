@@ -5,8 +5,15 @@
 // getAllWithdrawals(bankAccounts) => [3432, 0, 43242.34, 0, 23432]
 
 export function getAllWithdrawals(array) {
-  // Your code goes here...
-
+  return array.map((account) => {
+    if (account.withdrawals && account.withdrawals.length > 0) {
+      return account.withdrawals.reduce(
+        (sum, withdrawal) => sum + withdrawal,
+        0
+      );
+    }
+    return 0;
+  });
 }
 
 // === TEST YOURSELF ===
