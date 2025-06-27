@@ -10,13 +10,33 @@
 // ]
 
 export const getAllAccountsWithSumsOfDepositsLess2000 = (array) => {
-  return array.filter((account) => {
-    const sumOfDeposits = account.deposits
-      ? account.deposits.reduce((sum, deposit) => sum + deposit, 0)
-      : 0;
-    return sumOfDeposits < 2000;
-  });
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let sumOfDeposits = 0;
+
+    if (array[i].deposits) {
+      for (let j = 0; j < array[i].deposits.length; j++) {
+        sumOfDeposits += array[i].deposits[j];
+      }
+    }
+
+    if (sumOfDeposits < 2000) {
+      result.push(array[i]);
+    }
+  }
+
+  return result;
 };
+
+// export const getAllAccountsWithSumsOfDepositsLess2000 = (array) => {
+//   return array.filter((account) => {
+//     const sumOfDeposits = account.deposits
+//       ? account.deposits.reduce((sum, deposit) => sum + deposit, 0)
+//       : 0;
+//     return sumOfDeposits < 2000;
+//   });
+// };
 
 // getAllAccountsWithSumsOfDepositsLess2000 = (array) => {
 //   return array.filter((account) => {
