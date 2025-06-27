@@ -4,9 +4,31 @@
 // getClientWithGreatestBalance(bankAccounts) => [{ name: 'SomeName', balance: 32, ... }]
 
 export function getClientWithGreatestBalance(array) {
-  const maxBalance = Math.max(...array.map((account) => account.balance));
-  return array.filter((account) => account.balance === maxBalance);
+  if (array.length === 0) return [];
+
+  let maxBalance = array[0].balance;
+
+  // Start from index 1 since we already used index 0
+  for (let i = 1; i < array.length; i++) {
+    if (array[i].balance > maxBalance) {
+      maxBalance = array[i].balance;
+    }
+  }
+
+  const result = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].balance === maxBalance) {
+      result.push(array[i]);
+    }
+  }
+
+  return result;
 }
+
+// export function getClientWithGreatestBalance(array) {
+//   const maxBalance = Math.max(...array.map((account) => account.balance));
+//   return array.filter((account) => account.balance === maxBalance);
+// }
 
 // getClientWithGreatestBalance = (array) => {
 //   const maxBalance = Math.max(...array.map((account) => account.balance));

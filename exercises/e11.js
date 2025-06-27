@@ -5,16 +5,34 @@
 // getAllWithdrawals(bankAccounts) => [3432, 0, 43242.34, 0, 23432]
 
 export function getAllWithdrawals(array) {
-  return array.map((account) => {
-    if (account.withdrawals && account.withdrawals.length > 0) {
-      return account.withdrawals.reduce(
-        (sum, withdrawal) => sum + withdrawal,
-        0
-      );
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].withdrawals && array[i].withdrawals.length > 0) {
+      let sum = 0;
+      for (let j = 0; j < array[i].withdrawals.length; j++) {
+        sum += array[i].withdrawals[j];
+      }
+      result.push(sum);
+    } else {
+      result.push(0);
     }
-    return 0;
-  });
+  }
+
+  return result;
 }
+
+// export function getAllWithdrawals(array) {
+//   return array.map((account) => {
+//     if (account.withdrawals && account.withdrawals.length > 0) {
+//       return account.withdrawals.reduce(
+//         (sum, withdrawal) => sum + withdrawal,
+//         0
+//       );
+//     }
+//     return 0;
+//   });
+// }
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-11"
